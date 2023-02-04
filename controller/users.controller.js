@@ -21,7 +21,7 @@ exports.loginSubmit = async (req)=>{
             status = 400;
             message = "email or password parameters required";
         }else if(!emailRegexp.test(email)){
-            status = 400;
+            status = 200;
             message = "Please enter a valid email";
         }else{
 

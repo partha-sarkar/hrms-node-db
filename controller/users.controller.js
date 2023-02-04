@@ -23,7 +23,7 @@ exports.loginSubmit = async (req)=>{
         }else if(!emailRegexp.test(email)){
             status = 200;
             message = "Please enter a valid email";
-        }else{
+        }else{ 
 
             const getUser = await usersModel.findOne({"email":email});        
             //encryptedPassword = await bcrypt.hash(password, 10);  

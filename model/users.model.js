@@ -5,6 +5,10 @@ const usersSchema = new mongoose.Schema({
     password: { type:String },
     user_type: { type:Number },
     token: { type: String },
+    company_id: { type:Number },
+    branch_id: { type:Number },
+    user_type: { type:Number }, 
+    user_name: { type:String }, 
 });
 
 module.exports = mongoose.model('users', usersSchema);

@@ -6,6 +6,9 @@ var bcrypt = require('bcryptjs');
 
 exports.loginSubmit = async (req)=>{
     try{
+
+        console.log(req);
+
         const {email,password} = req;
         let status = 200;
         let message = "";
@@ -25,7 +28,10 @@ exports.loginSubmit = async (req)=>{
             message = "Please enter a valid email";
         }else{ 
 
-            const getUser = await usersModel.findOne({"email":email});        
+            const getUser = await usersModel.findOne({"email":email});  
+
+            
+
             //encryptedPassword = await bcrypt.hash(password, 10);  
             if(getUser && (await bcrypt.compare(password, getUser.password) )){ 
                     const token = jwt.sign({ users_id: getUser._id, email },process.env.JWT_SECRET_KEY,{ expiresIn: "2h" });
@@ -39,6 +45,10 @@ exports.loginSubmit = async (req)=>{
                         respdata={
                             users_id:getUser._id,
                             token:token,
+                            companyid:getUser.company_id,
+                            branchid:getUser.branch_id,
+                            usertype:getUser.user_type,
+                            user_name:getUser.user_name,
                         };
                     }
                 

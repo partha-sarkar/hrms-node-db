@@ -24,9 +24,18 @@ router.post('/login',async (req,res)=>{
 
     }catch (err) {
         console.log(err);
-    }
-    
+    }   
 
+});
+
+router.post('/verifytoken',authMiddleware,async (req,res)=>{
+    try{
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify({"status":200})); 
+
+    }catch (err) {
+        console.log(err);
+    }   
 });
 
 
